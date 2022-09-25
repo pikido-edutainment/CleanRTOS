@@ -6,7 +6,7 @@
 // (see the Pool example in the examples folder)
 
 #pragma once
-#include "crt_FreeRTOS.h"
+#include "internals/crt_FreeRTOS.h"
 #include "crt_Mutex.h"
 #include "crt_MutexSection.h"
 
