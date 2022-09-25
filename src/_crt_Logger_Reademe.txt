@@ -1,0 +1,31 @@
+By Marius Versteegen, 2022
+
+Logging
+
+For reasons of speed, logging is not mutex protected. 
+As a consequence, there is a race condition.
+In very rare cases, a log may be lost.
+
+The positive side of it is that logging is as fast as it gets.
+A log takes about 0.25 us. (protecting against the race condition
+would make it at least 10 times as slow). Because of its speed,
+without much worry about performance penalties, you can add a 
+lot of logs.
+
+How to use it:
+In main.cpp:
+Logger<100> theLogger("Logger", 2 /*priority*/, ARDUINO_RUNNING_CORE, pinButtonDump);/*, buttonHandler);*/
+ILogger& logger(theLogger);	
+
+Everywhere else:
+#include "crt_ILogger.h"
+extern crt::ILogger& logger;
+
+logger.LogText("bla");
+logger.LogInt32(-1);
+logger.LogUin32(232);
+
+To show the log, press the button (negative logic) that is connected to the logger.
+
+
+

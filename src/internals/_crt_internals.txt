@@ -1,0 +1,14 @@
+by Marius Versteegen, 2022
+
+This internals folder contains code that is used by CleanRTOS.
+It is generally discouraged/not needed to use that code directly:
+
+crt_FreeRTOS.h   -  This header includes all parts of freertos that CleanRTOS is built on.
+                It is included by CleanRTOS.h
+
+crt::std::Stack - This is a simple, high performant stack that is internally used by 
+                MutexSection.
+
+TaskCriticalSection - Use of this class is generally bad practice and a sign that your
+                software architecture should be improved.
+

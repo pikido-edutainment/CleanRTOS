@@ -1,0 +1,18 @@
+If encounter a bug in CleanRTOS, please let me know.
+
+Just drop me an email at pikido.info@gmail.com with the contents below:
+
+
+* ID/name of the bug/feature
+
+* Summary (if the name needs elaboration with a few words)
+
+* Environment (OS and build environment : Windows 10? ESP_IDF? Platform.io or Arduino IDE?)
+
+* Console logs (as additional text file attachment)
+
+* Source (in which file / location did you find the bug)
+
+* Steps to reproduce
+
+* Expected vs. actual results: Explain what results you expected - be as specific as possible. Just saying "it doesn’t work as expected" is not useful.
