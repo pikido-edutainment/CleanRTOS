@@ -94,6 +94,8 @@ namespace crt
 			ESP_LOGI("", "**************************************************************************");
 			ESP_LOGI("", "**************************************************************************");
 
+			vTaskDelay(100);
+
 			while (true)
 			{
 				dumpStackHighWaterMarkIfIncreased(); 		// This function call takes about 0.25ms! It should be called while debugging only.
