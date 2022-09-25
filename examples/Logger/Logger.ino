@@ -5,3 +5,7 @@
 // proper code highlighting and intellisense too.
 
 #include "Logger_ino.h"
+
+// IMPORTANT: required for this example to work:
+// if you are using Arduino IDE, make sure to set 
+// the build setting "Core Debug Level" to "info".
