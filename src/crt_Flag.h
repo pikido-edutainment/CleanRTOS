@@ -19,7 +19,7 @@ namespace crt
     public:
         Flag(Task* pTask) : Waitable(WaitableType::wt_Flag), pTask(pTask)
         {
-            Waitable::init(pTask->QueryBitNumber(this));
+            Waitable::init(pTask->queryBitNumber(this));
         }
         
         void set()

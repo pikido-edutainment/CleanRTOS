@@ -38,7 +38,7 @@ namespace crt
 	public:
         Timer(Task* pTask):Waitable(WaitableType::wt_Timer), pTask(pTask)
 		{
-            Waitable::init(pTask->QueryBitNumber(this));	// This will cause the bitmask of Waitable to be set properly.
+            Waitable::init(pTask->queryBitNumber(this));	// This will cause the bitmask of Waitable to be set properly.
             timerCallBackInfo.init(this, Waitable::getBitMask());
 
             timer_args.callback = static_timer_callback;

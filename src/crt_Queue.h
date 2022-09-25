@@ -25,7 +25,7 @@ namespace crt
 		Queue(Task* pTask,bool bWriteWaitIfQueueFull=false):Waitable(WaitableType::wt_Queue),pTask(pTask),
             writeDelay(bWriteWaitIfQueueFull ? portMAX_DELAY : 0)
 		{
-            Waitable::init(pTask->QueryBitNumber(this));
+            Waitable::init(pTask->queryBitNumber(this));
 			qh = xQueueCreate(COUNT, sizeof(TYPE));
 		}
 		

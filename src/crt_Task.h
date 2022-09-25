@@ -45,7 +45,7 @@ namespace crt
 			assert(hEventGroup != NULL); // If failed, not enough heap memory.
 		}
 
-        uint32_t QueryBitNumber(Waitable* pWaitable)
+        uint32_t queryBitNumber(Waitable* pWaitable)
         {
             assert(nofWaitables < 24);
             switch (pWaitable->getType())

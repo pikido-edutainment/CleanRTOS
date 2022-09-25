@@ -1,0 +1,61 @@
+#######################################
+# Syntax Coloring Map For CleanRTOS
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Flag				KEYWORD1
+Handler			KEYWORD1
+IHandler			KEYWORD1
+IHandlerListener	KEYWORD1
+ILogger			KEYWORD1
+Logger			KEYWORD1
+LoggerTask		KEYWORD1
+MainInits			KEYWORD1
+Mutex			KEYWORD1
+MutexSection		KEYWORD1
+Pool				KEYWORD1
+Queue			KEYWORD1
+Task				KEYWORD1
+Waitable			KEYWORD1
+Timer			KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+set				KEYWORD2
+clear			KEYWORD2
+addHandlerListener	KEYWORD2
+update			KEYWORD2
+start			KEYWORD2
+logText			KEYWORD2
+logInt32			KEYWORD2
+logUint32			KEYWORD2
+logFloat			KEYWORD2
+dumpNow			KEYWORD2
+lock				KEYWORD2
+unlock			KEYWORD2
+write			KEYWORD2
+read				KEYWORD2
+getNofMessagesWaiting	KEYWORD2
+queryBitNumber		KEYWORD2
+getEventGroup		KEYWORD2
+setEventBits		KEYWORD2
+clearEventBits		KEYWORD2
+dumpStackHighWaterMarkIfIncreased	KEYWORD2
+wait				KEYWORD2
+waitAny			KEYWORD2
+waitAll			KEYWORD2
+sleep_us			KEYWORD2
+stop				KEYWORD2
+start_periodic		KEYWORD2
+static_timer_callback	KEYWORD2
+timer_callback		KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
