@@ -4,7 +4,7 @@
 // of CleanRTOS
 
 #pragma once
-#include "crt_FreeRTOS.h"
+#include "internals/crt_FreeRTOS.h"
 #include "crt_Config.h"
 #include "crt_MainInits.h"
 #include "crt_ILogger.h"

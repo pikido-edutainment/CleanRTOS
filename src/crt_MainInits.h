@@ -4,7 +4,7 @@
 // A MainInits object must be defined before the Tasks are started.
 
 #pragma once
-#include "crt_FreeRTOS.h"
+#include "internals/crt_FreeRTOS.h"
 namespace crt
 {
     class MainInits

@@ -1,7 +1,7 @@
 // by Marius Versteegen, 2022
 
 #pragma once
-#include "crt_FreeRTOS.h"
+#include "internals/crt_FreeRTOS.h"
 #include "crt_Config.h"
 #include "crt_ILogger.h"
 #include "crt_Waitable.h"

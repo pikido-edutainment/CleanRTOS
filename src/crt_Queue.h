@@ -5,7 +5,7 @@
 // (see the Queue example in the examples folder)
 
 #pragma once
-#include "crt_FreeRTOS.h"
+#include "internals/crt_FreeRTOS.h"
 #include "crt_Waitable.h"
 #include "crt_Task.h"
 #include "crt_ILogger.h"
