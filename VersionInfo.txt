@@ -1,4 +1,7 @@
 CleanRTOS for ESP32
 
-Version: 0.1
+Version: 0.0.2
+Some additional comments for Arduino IDE users.
+
+Version: 0.0.1
 First Release (Beta)
