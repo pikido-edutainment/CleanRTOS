@@ -87,6 +87,13 @@ namespace crt
             uint64_t timeMicrosNew3 = 0;
 
             timer1.start_periodic(750000);           		// This starts a periodic timer with a period of 750000 microseconds.
+
+			ESP_LOGI("", "**************************************************************************");
+			ESP_LOGI("", "**************************************************************************");
+			ESP_LOGI("", "Please press the button attached to pinButtonDump (see AllWaitables_ino.h)");
+			ESP_LOGI("", "**************************************************************************");
+			ESP_LOGI("", "**************************************************************************");
+
 			while (true)
 			{
 				dumpStackHighWaterMarkIfIncreased(); 		// This function call takes about 0.25ms! It should be called while debugging only.

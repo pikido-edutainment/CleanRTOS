@@ -7,5 +7,6 @@
 #include "Queue_ino.h"
 
 // IMPORTANT: required for this example to work:
-// if you are using Arduino IDE, make sure to set 
-// the build setting "Core Debug Level" to "info".
+// if you are building from Arduino IDE, make sure to set 
+// the build setting "Core Debug Level" to "info"
+// and select baudrate=115200 in Serial Monitor.
