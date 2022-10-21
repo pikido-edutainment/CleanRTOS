@@ -51,7 +51,7 @@ namespace crt
 
 				// Create a new clause to allow MutexSection to be used in a RAII fashion.
 				{
-					MutexSection ms(mutexSharedInt);
+					MutexSection ms(this,mutexSharedInt);
 					sharedInt++;
 				}
 				vTaskDelay(1);
@@ -89,9 +89,9 @@ namespace crt
 				vTaskDelay(1000);
 				{
 					ESP_LOGI("SharedNumbersDisplayer", "Waiting to obtain the mutexes");
-				    MutexSection msA(mutexSharedIntA);
-					MutexSection msB(mutexSharedIntB);
-					MutexSection msC(mutexSharedIntC);
+				    MutexSection msA(this,mutexSharedIntA);
+					MutexSection msB(this,mutexSharedIntB);
+					MutexSection msC(this,mutexSharedIntC);
 					
 					ESP_LOGI("SharedNumbersDisplayer", "Mutexes obtained. no one else can alter the ints now");
 					ESP_LOGI("sharedIntA","%d",sharedIntA);

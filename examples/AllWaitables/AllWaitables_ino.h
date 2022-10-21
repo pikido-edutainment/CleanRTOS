@@ -47,6 +47,7 @@ void setup()
 
 	vTaskDelay(10);// allow logger to initialize.
 	ESP_LOGI("checkpoint", "start of main");
+	ESP_LOGI("NOTE", "You can inspect the Logs by pressing the LOG button.");
 	crt::logger.logText("starting");
 }
 

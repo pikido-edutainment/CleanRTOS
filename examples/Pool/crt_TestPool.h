@@ -47,7 +47,9 @@ namespace crt
 			vTaskDelay(1000); // wait for other threads to have started up as well.
 			
 			uint64_t count = 0;
-			
+
+			TwoNumbers twoNumbers;							// temp variable to copy to and from the pool.
+
 			while (true)
 			{
 				dumpStackHighWaterMarkIfIncreased(); 		// This function call takes about 0.25ms! It should be called while debugging only.
@@ -57,7 +59,7 @@ namespace crt
 				{
 					// increase all numbers by 2.
 					// The numbers in the pool protected TwoNumber object are expected to remain in sync.
-					TwoNumbers twoNumbers = poolTwoNumbersA.read();
+				    poolTwoNumbersA.read(twoNumbers);
 					twoNumbers.number1 += 2;
 					twoNumbers.number2 += 2;
 					poolTwoNumbersA.write(twoNumbers);
@@ -71,7 +73,7 @@ namespace crt
 				if((count%100)==0)
 				{
 					ESP_LOGI(Task::taskName, "Current numbers, the first two should remain synced:");
-					TwoNumbers twoNumbers = poolTwoNumbersA.read();
+				    poolTwoNumbersA.read(twoNumbers);
 					ESP_LOGI("TwoNumbersA","%d",twoNumbers.number1);
 					ESP_LOGI("TwoNumbersA","%d",twoNumbers.number2);
 					

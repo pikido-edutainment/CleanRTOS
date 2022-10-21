@@ -20,7 +20,7 @@ namespace crt
 	// It is a good idea to define all mutexes that your application needs in this file.
 	// That way, you can make sure that every mutex gets a unique id, and that the
 	// order of the ids is correct (when multiple mutexes are locked concurrently,
-	// mutexes with smaller id must be locked before mutexes with larger id).
+	// Within each thread (separately), MUTEXES WITH SMALLER ID MUST BE LOCKED BEFORE MUTEXES WITH LARGER ID.
 	
 	Mutex mutexSharedIntA(1);		// Mutex with id 1, which protects sharedIntA
 	Mutex mutexSharedIntB(2);		// Mutex with id 2, which protects sharedIntB
@@ -30,11 +30,11 @@ namespace crt
 									// By using MutexSections, that rule is safeguarded.
 
 	SharedNumberIncreaser sharedNumberIncreaserA("SharedNumberIncreaser A", 2 /*priority*/, 4000 /*stackBytes*/, ARDUINO_RUNNING_CORE,
-	                                            sharedIntA, mutexSharedIntA); // Don't forget to call its start() memeber during setup().
+	                                            sharedIntA, mutexSharedIntA); // Don't forget to call its start() member during setup().
 	SharedNumberIncreaser sharedNumberIncreaserB("SharedNumberIncreaser B", 2 /*priority*/, 4000 /*stackBytes*/, ARDUINO_RUNNING_CORE,
-	                                            sharedIntB, mutexSharedIntB); // Don't forget to call its start() memeber during setup().
+	                                            sharedIntB, mutexSharedIntB); // Don't forget to call its start() member during setup().
 	SharedNumberIncreaser sharedNumberIncreaserC("SharedNumberIncreaser C", 2 /*priority*/, 4000 /*stackBytes*/, ARDUINO_RUNNING_CORE,
-	                                            sharedIntC, mutexSharedIntC); // Don't forget to call its start() memeber during setup().
+	                                            sharedIntC, mutexSharedIntC); // Don't forget to call its start() member during setup().
     SharedNumbersDisplayer sharedNumbersDisplayer("SharedNumbersDisplayer", 2 /*priority*/, 4000 /*stackBytes*/, ARDUINO_RUNNING_CORE);
 }
 

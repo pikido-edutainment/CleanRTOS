@@ -10,7 +10,7 @@
 
 namespace crt
 {
-	const uint32_t MAX_MUTEXNESTING = 100;
+	const uint32_t MAX_MUTEXNESTING = 20;
 
 	// below, the mutexIDs directly involved in this test can be found.
 	const uint32_t MutexID_Logger = (1 << 30);	// High ID, so can be nested very deeply.

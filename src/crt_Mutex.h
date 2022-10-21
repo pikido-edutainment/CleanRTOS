@@ -1,6 +1,5 @@
 #pragma once
 #include "internals/crt_FreeRTOS.h"
-#include "internals/crt__std_stack.h"
 
 namespace crt
 {
@@ -18,8 +17,8 @@ namespace crt
 
 	// (see the MutexSection example in the examples folder)
 
-	// Next global variable is accessed from the function bodies of all Mutex objects.
-	std::Stack<uint32_t, crt::MAX_MUTEXNESTING> mutexIdStack(0);
+	// Each Task has its own mutex stack. That makes sure that within the Task,
+	// mutexes are always locked in the order of their mutex priority.
 	
 	class Mutex
 	{
@@ -36,31 +35,29 @@ namespace crt
 			//mutexID(mutexID), freeRtosMutex(xSemaphoreCreateBinary())
 		{
 			assert(mutexID != 0);	// MutexID should not be 0. Zero is reserved (to indicate absence of mutexID)
-
 			//xSemaphoreGive(freeRtosMutex);	// In case of a binary semaphore: that one should be given before it can be taken.
 		}
 		
-		void lock()
+		void lock(Task* pTask)
 		{
 			while (true)
 			{
+				assert(mutexID > pTask->mutexIdStack.top()); // Error : Potential Deadlock : Within each thread, never try to lock a mutex with lower mutex priority than a mutex that is locked(before it).
+
 				// max tickDelay is the constant portMAX_DELAY
 				rc = xSemaphoreTake(freeRtosMutex, 0.0001 /* tickDelay */);
 				if (rc == pdPASS)
 				{
+					assert(pTask->mutexIdStack.push(mutexID));// Assert would mean that either the amount of nested concurrently locked mutexes for this task exceeds the constant MAX_MUTEXNESTING, or the lock and unlock of the mutex are not performed in the same task.
 					break;
 				}
-				taskYIELD ();
+				taskYIELD(); // Feed the wdt.
 			}
-
-			assert(mutexID >= mutexIdStack.top());	// If this assert fails, there's a potential deadlock due to wrong nesting order.
-			mutexIdStack.push(mutexID);
 		}
 		
-		void unlock()
+		void unlock(Task* pTask)
 		{
-			assert(mutexIdStack.pop() == mutexID); // If this assert fails, there is no hierarchical nesting.
-                                                  
+			pTask->mutexIdStack.pop();
 			rc = xSemaphoreGive(freeRtosMutex);
 			assert(rc == pdPASS);
 		}

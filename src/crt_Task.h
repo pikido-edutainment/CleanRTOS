@@ -2,6 +2,7 @@
 
 #pragma once
 #include "internals/crt_FreeRTOS.h"
+#include "internals/crt__std_stack.h"
 #include "crt_Config.h"
 #include "crt_ILogger.h"
 #include "crt_Waitable.h"
@@ -36,10 +37,12 @@ namespace crt
         uint32_t flagsMask;         // Every bit in this mask belongs to a flag.
         uint32_t timersMask;        // Every bit in this mask belongs to a timer.
 
+        std::Stack<uint32_t, crt::MAX_MUTEXNESTING> mutexIdStack;
+
 	public:
         Task(const char *taskName, unsigned int taskPriority, unsigned int taskStackSizeBytes, unsigned int taskCoreNumber)
             : taskName(taskName), taskPriority(taskPriority), taskStackSizeBytes(taskStackSizeBytes), taskCoreNumber(taskCoreNumber),
-            nofWaitables(0), queuesMask(0)
+            nofWaitables(0), queuesMask(0), mutexIdStack(0)  // The value 0 is reserved for "empty stack".
 		{
 			hEventGroup = xEventGroupCreate();
 			assert(hEventGroup != NULL); // If failed, not enough heap memory.

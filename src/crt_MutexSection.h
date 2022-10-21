@@ -18,15 +18,16 @@ namespace crt
 	class MutexSection
 	{
 	private:
+		Task* pTask;
 		Mutex& mutex;
 	public:
-		MutexSection(Mutex& mutex) : mutex(mutex)
+		MutexSection(Task* pTask, Mutex& mutex) : pTask(pTask), mutex(mutex)
 		{
-			mutex.lock();
+			mutex.lock(pTask);
 		}
 		~MutexSection()
 		{
-			mutex.unlock();
+			mutex.unlock(pTask);
 		}
 	};
 };
