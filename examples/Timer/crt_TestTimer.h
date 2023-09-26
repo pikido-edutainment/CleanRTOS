@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
@@ -12,13 +12,6 @@ namespace crt
 	private:
         Timer periodicTimer;
         Timer sleepTimer;
-
-	public:
-		static void StaticMain(void *pParam)
-		{
-			TestTimers* THIS = (TestTimers*) pParam;
-			THIS->main();
-		}
 
 	public:
 		TestTimers(const char *taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber) :

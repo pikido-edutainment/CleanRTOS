@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 // MainInits initializes CleanRTOS.
 // A MainInits object must be defined before the Tasks are started.

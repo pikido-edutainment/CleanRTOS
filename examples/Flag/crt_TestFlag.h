@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
@@ -7,19 +7,12 @@
 
 namespace crt
 {
-	extern crt::ILogger& logger;
+	extern ILogger& logger;
   
 	class FlagListener : public Task
 	{
 	private:
         Flag flagHi;
-
-	public:
-		static void StaticMain(void *pParam)
-		{
-			FlagListener* THIS = (FlagListener*) pParam;
-			THIS->main();
-		}
 
 	public:
 		FlagListener(const char *taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber) :

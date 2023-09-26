@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
@@ -15,9 +15,9 @@ namespace crt
 	extern Mutex mutexSharedIntA;		// Mutex with id 1, which protects sharedIntA
 	extern Mutex mutexSharedIntB;		// Mutex with id 2, which protects sharedIntB
 	extern Mutex mutexSharedIntC;		// Mutex with id 3, ,, . 
-	                                        // NOTE: it is forbidden to lock a new mutex with an id
-					         				// that is lower than the highest id of currently locked mutexes.
-							        		// By using MutexSections, that rule is safeguarded.
+	                                    // NOTE: it is forbidden to lock a new mutex with an id
+				         				// that is lower than the highest id of currently locked mutexes.
+						        		// By using MutexSections, that rule is safeguarded.
 
 	class SharedNumberIncreaser : public Task
 	{
@@ -25,13 +25,6 @@ namespace crt
 		int32_t& sharedInt;
 		Mutex&   mutexSharedInt;
 		
-	public:
-		static void StaticMain(void *pParam)
-		{
-			SharedNumberIncreaser* THIS = (SharedNumberIncreaser*) pParam;
-			THIS->main();
-		}
-
 	public:
 		SharedNumberIncreaser(const char *taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber, 
 		                       int32_t& sharedInt, Mutex& mutexSharedInt) :

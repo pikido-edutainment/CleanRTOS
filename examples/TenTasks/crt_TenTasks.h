@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
@@ -9,13 +9,6 @@ namespace crt
 	{
 	private:
 		int32_t count;
-
-	public:
-		static void StaticMain(void* pParam)
-		{
-			CounterTaskForTestTenTasks* THIS = (CounterTaskForTestTenTasks*)pParam;
-			THIS->main();
-		}
 
 	public:
 		CounterTaskForTestTenTasks(const char* taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber) :

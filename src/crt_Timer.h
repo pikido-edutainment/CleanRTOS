@@ -105,6 +105,15 @@ namespace crt
 		inline void timer_callback(uint32_t bitMask)
 		{
             pTask->setEventBits(bitMask);
+
+            // Resumingly, this is how it works ( I think :-) ):
+            // The timer generates a hardware interrupt.
+            // That means: running code is interrupted (program counter and stackpointer are pushed on a special stack).
+            // When the timer fires, this callback function is called as interrupt handler.
+            // It simply sets an event bit that can be waited on in FreeRTOS by the Task that set the timer.
+            // 
+            // Upon exiting this function, the interrupt ends (program counter and stackpointer of where the code was 
+            // running prior to the interrupt are popped from the stack and used).
 		
 			// Note: if CONFIG_ESP_TIMER_SUPPORTS_ISR_DISPATCH_METHOD would be enabled (but it is disabled by default),
 			// xEventGroupSetBitsFromISR should be used instead.

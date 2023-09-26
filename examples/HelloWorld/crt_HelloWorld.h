@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
@@ -9,14 +9,6 @@ namespace crt
 {
 	class HelloWorld : public Task
 	{
-
-	public:
-		static void StaticMain(void *pParam)
-		{
-			HelloWorld* THIS = (HelloWorld*) pParam;
-			THIS->main();
-		}
-
 	public:
 		HelloWorld(const char *taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber) :
 			Task(taskName, taskPriority, taskSizeBytes, taskCoreNumber)

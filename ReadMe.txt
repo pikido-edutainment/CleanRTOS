@@ -19,7 +19,23 @@ folder for a full overview.
 
 Just checkout the examples to see how it can be used.
 
-Note: The CleanRTOS library does not depend on Arduino IDE.
+Enjoy! Marius
+
+PS:
+The CleanRTOS library does not depend on Arduino IDE.
 It can be used on any other ESP32 supporting platform as well.
 
-Enjoy! Marius
+For instance for faster building with better debug feedback,
+I personally like to use the ESP_IDF. 
+
+PS2:
+If you also like to use Arduino libraries for ESP32 that do depend on Arduino IDE,
+you can achieve with by a small trick.
+Just read the ReadMe file in the folder "extras\for building with ESP_IDF" 
+if you'd like to try that road.
+
+PS3:
+To view ESP_LOGI output messages in Arduino IDE, 
+set Tools -> Core Debug Level to "info" 
+and Serial Monitor baud rate to 115200
+When using ESP_IDF, make sure that CONFIG_LOG_DEFAULT_LEVEL_INFO=y in sdkconfig

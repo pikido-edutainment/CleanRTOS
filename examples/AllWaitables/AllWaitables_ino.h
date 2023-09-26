@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 // This application uses the CleanRTOS library.
 // CleanRTOS is a collection of wrappers around FreeRTOS.

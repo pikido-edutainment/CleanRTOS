@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
@@ -11,7 +11,7 @@
 
 namespace crt
 {
-	extern crt::ILogger& logger;
+	extern ILogger& logger;
   
 	class TestWaitables1 : public Task
 	{
@@ -24,11 +24,11 @@ namespace crt
         Flag flag1;
 
 	public:
-		static void StaticMain(void *pParam)
+		/*static void StaticMain(void *pParam)
 		{
 			TestWaitables1* THIS = (TestWaitables1*) pParam;
 			THIS->main();
-		}
+		}*/
 
 	public:
 		TestWaitables1(const char *taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber) :

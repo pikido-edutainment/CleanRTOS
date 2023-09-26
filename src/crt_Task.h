@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include "internals/crt_FreeRTOS.h"
@@ -14,7 +14,7 @@
 
 namespace crt
 {
-    // extern crt::ILogger& logger;
+    // extern ILogger& logger;
 
 	class Task
 	{
@@ -37,7 +37,7 @@ namespace crt
         uint32_t flagsMask;         // Every bit in this mask belongs to a flag.
         uint32_t timersMask;        // Every bit in this mask belongs to a timer.
 
-        std::Stack<uint32_t, crt::MAX_MUTEXNESTING> mutexIdStack;
+        std::Stack<uint32_t, MAX_MUTEXNESTING> mutexIdStack;
 
 	public:
         Task(const char *taskName, unsigned int taskPriority, unsigned int taskStackSizeBytes, unsigned int taskCoreNumber)
@@ -132,7 +132,7 @@ namespace crt
                 // Serial.print(unsigned(xPortGetFreeHeapSize()));
                 // Serial.println(" heap bytes");
 
-                vTaskDelay(10);	// Allow Serial prints to complete before allowing more of them.
+                // vTaskDelay(10);	// Allow Serial prints to complete before allowing more of them.
             }
 #endif
         }

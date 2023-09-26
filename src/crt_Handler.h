@@ -5,7 +5,7 @@
 #include "crt_IHandler.h"
 #include "crt_IHandlerListener.h"
 
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 // A Handler object can be used to replace multiple periodic tasks by a single task,
 // thereby saving task-switching overhead and resources.
@@ -28,7 +28,7 @@
 
 namespace crt
 {
-	extern crt::ILogger& logger;
+	extern ILogger& logger;
 
 	template<unsigned int MAXLISTENERCOUNT> class Handler : public Task, public IHandler
 	{
@@ -43,13 +43,6 @@ namespace crt
 		uint64_t batchSizeUs;
 
 	public:
-		static void StaticMain(void *pParam)
-		{
-			Handler<MAXLISTENERCOUNT>* THIS = (Handler<MAXLISTENERCOUNT>*) pParam;
-			THIS->main();
-		}
-
-	public:
 		Handler(const char* taskName, unsigned int taskPriority, unsigned int taskCoreNumber, uint16_t periodMs) :
 			Handler(taskName, taskPriority, taskCoreNumber, periodMs, infiniteBatchSizeUs /* by default, no batchsize limit */)
 		{
@@ -58,24 +51,9 @@ namespace crt
 		// batchSizeUs : if a series of consequtive update() calls exceeds batchSizeUs,
 		//               a task yield is inserted.
 		Handler(const char *taskName, unsigned int taskPriority, unsigned int taskCoreNumber, uint16_t periodMs, uint64_t batchSizeUs) :
-			Task(taskName, taskPriority, 3500 + MAXLISTENERCOUNT * sizeof(IHandlerListener*), taskCoreNumber), nofHandlerListeners(0), periodMs(periodMs), periodUs(periodMs*1000), batchSizeUs(batchSizeUs)// assert period.
+			Task(taskName, taskPriority, 5500 + MAXLISTENERCOUNT * sizeof(IHandlerListener*), taskCoreNumber), nofHandlerListeners(0), periodMs(periodMs), periodUs(periodMs*1000), batchSizeUs(batchSizeUs)// assert period.
 		{
-			for (int i = 0;i < MAXLISTENERCOUNT;i++)
-			{
-				arHandlerListener[i] = nullptr;
-			}
-			
-			// start()   commented out: So the Handler Task does not start
-			//           automatically. Instead, explicitly call the start function.
-		}
-
-		// The function start() starts this thread "manually".
-		// It should be called after all handlerListeners have been added.
-		// That way, use of (time consuming) mutexes can be avoided.
-		/*override keyword not supported in current compiler*/
-		void start()
-		{
-			Task::start();
+			start();
 		}
 
 		/*override keyword not supported in current compiler*/
@@ -119,7 +97,7 @@ namespace crt
 			uint64_t beforeBatch    = 0;
 			uint64_t batchTimeSpent	= 0;
 			
-			vTaskDelay(10); // wait for others to initialise
+			vTaskDelay(500); // wait for other objects to initialise and add themselves as handlerlistener.
 			while (true)
 			{
 				beforeBatch = esp_timer_get_time();
@@ -157,22 +135,17 @@ namespace crt
 				                                     // This is the time spent on batches,
 													 // yields and optionally the test code
 				                                     // within the #defines below.
-				assert(diffAll < periodUs);
+				if (diffAll >= periodUs)
+				{
+					ESP_LOGI("Handler Delay too long:", "%d us", diffAll);
+				}
+
 				if (diffAll < periodUs) {
 					vTaskDelay((periodUs - diffAll) / 1000);
 				}
 				beforeAll = esp_timer_get_time();	 // This is the clean cut where the old interval ends
 
-#ifdef CRT_HIGH_WATERMARK_INCREASE_LOGGING
-				auto temp = uxTaskGetStackHighWaterMark(nullptr);
-				if (!prev_stack_hwm || temp < prev_stack_hwm)
-				{
-					prev_stack_hwm = temp;
-					ESP_LOGI("hwm_check", "Task %s has left: %d stack bytes and %d heap bytes", taskName, prev_stack_hwm, unsigned(xPortGetFreeHeapSize()));
-					//ESP_LOGI(taskName,"%d",unsigned(xPortGetFreeHeapSize()));vTaskDelay(1);
-					//ESP_LOGI(taskName," heap bytes","");vTaskDelay(1);
-				}
-#endif
+				dumpStackHighWaterMarkIfIncreased();
 
 #ifdef TEST_CRT_HANDLER
 				after2 = esp_timer_get_time();

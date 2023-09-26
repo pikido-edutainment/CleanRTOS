@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
@@ -17,13 +17,6 @@ namespace crt
 	{
 	private:
 		Queue<int32_t, 10> queueNumbers;
-
-	public:
-		static void StaticMain(void *pParam)
-		{
-			NumberDisplayTask* THIS = (NumberDisplayTask*) pParam;
-			THIS->main();
-		}
 
 	public:
 		NumberDisplayTask(const char *taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber) :

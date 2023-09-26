@@ -1,24 +1,17 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
 
 // The code below compares the speed of direct logging with ESP_LOGI to 
-// indirect logging via crt::Logger.
+// indirect logging via Logger.
 
 namespace crt
 {
-	extern crt::ILogger& logger;
+	extern ILogger& logger;
   
 	class TestLogger : public Task
 	{
-	public:
-		static void StaticMain(void *pParam)
-		{
-			TestLogger* THIS = (TestLogger*) pParam;
-			THIS->main();
-		}
-
 	public:
 		TestLogger(const char *taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber) :
 			Task(taskName, taskPriority, taskSizeBytes, taskCoreNumber)

@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 // A Queue is a waitable. It is meant for inter task communications.
 // The task that owns the queue should wait for another task to put something into it.
@@ -11,7 +11,7 @@
 #include "crt_ILogger.h"
 namespace crt
 {
-    //extern crt::ILogger& logger;
+    //extern ILogger& logger;
 
 	template<typename TYPE, uint32_t COUNT> class Queue : public Waitable
 	{

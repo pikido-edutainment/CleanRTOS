@@ -1,9 +1,14 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 // crt_CleanRTOS.h is a convenience include: it includes the most common parts 
 // of CleanRTOS
 
 #pragma once
+
+// Next define can be used to make other libraries conditionally
+// dependent on CleanRTOS.
+#define CleanRTOS_INCLUDED
+
 #include "internals/crt_FreeRTOS.h"
 #include "crt_Config.h"
 #include "crt_MainInits.h"

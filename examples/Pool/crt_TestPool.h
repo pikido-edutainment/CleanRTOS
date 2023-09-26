@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
@@ -26,13 +26,6 @@ namespace crt
 
 	class SharedNumberIncreaser : public Task
 	{
-	public:
-		static void StaticMain(void *pParam)
-		{
-			SharedNumberIncreaser* THIS = (SharedNumberIncreaser*) pParam;
-			THIS->main();
-		}
-
 	public:
 		SharedNumberIncreaser(const char *taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber) :
 			Task(taskName, taskPriority, taskSizeBytes, taskCoreNumber)

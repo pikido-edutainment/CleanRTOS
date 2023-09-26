@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 // This file test 10 concurrently running tasks of the same type.
 

@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 // Pools can be used to protect access to shared data without 
 // explicitly worrying about mutexes. The class of the shared data should provide a copy constructor.

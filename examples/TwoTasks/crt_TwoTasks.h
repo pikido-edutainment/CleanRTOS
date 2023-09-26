@@ -1,4 +1,4 @@
-// by Marius Versteegen, 2022
+// by Marius Versteegen, 2023
 
 #pragma once
 #include <crt_CleanRTOS.h>
@@ -9,13 +9,6 @@ namespace crt
 	{
 	private:
 		const char* text = NULL;
-
-	public:
-		static void StaticMain(void *pParam)
-		{
-			SayHelloTask* THIS = (SayHelloTask*) pParam;
-			THIS->main();
-		}
 
 	public:
 		SayHelloTask(const char *taskName, unsigned int taskPriority, unsigned int taskSizeBytes, unsigned int taskCoreNumber, const char* text) :

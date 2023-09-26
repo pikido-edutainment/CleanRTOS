@@ -2,7 +2,7 @@
 
 # Of course, it's up to you where you choose to store your libraries.
 
-# My personal choice has been not to add any additional libraries to the
+# My personal preference is not to add any additional libraries to the
 # libraries folder of the Arduino component.
 
 # Instead additional libraries - CleanRTOS and any other third party libraries,
@@ -38,3 +38,7 @@ set(COMPONENT_ADD_INCLUDEDIRS
 )
 
 register_component()
+
+# PS: it is possible to use the CleanRTOS library as a component instead.
+# To do that, follow the instructions in the CMakeLists file in the folder
+# "optional when using as component"
