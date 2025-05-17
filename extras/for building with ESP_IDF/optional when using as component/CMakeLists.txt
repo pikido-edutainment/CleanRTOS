@@ -30,5 +30,6 @@ set(COMPONENT_ADD_INCLUDEDIRS
 register_component()
 
 # PS: it is also possible to install CleanRTOS as a normal, "non-component" library.
-  In that case, don't use this CMakeLists file, but follow the instructions in the
-  CMakeLists file in the "content for root folder" instead.
+# In that case, don't use this CMakeLists file, but follow the instructions in the
+# CMakeLists file in the "content for root folder" instead.
+
