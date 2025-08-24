@@ -26,7 +26,7 @@ namespace crt
 
 		//virtual bool operator==(const Waitable& other) const = 0;
 		// Make next function virtual, and.. crash!
-		inline WaitableType getType() const {return WaitableType::wt_None;}
+		inline WaitableType getType() const {return waitableType;}
 
 		void init(uint32_t nBitNumber) { this->bitNumber = nBitNumber; this->bitMask = 1 << nBitNumber; }
 		inline uint32_t getBitNumber() const {return bitNumber;}
