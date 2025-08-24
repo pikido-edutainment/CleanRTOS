@@ -42,7 +42,7 @@ namespace crt
 	public:
         Task(const char *taskName, unsigned int taskPriority, unsigned int taskStackSizeBytes, unsigned int taskCoreNumber)
             : taskName(taskName), taskPriority(taskPriority), taskStackSizeBytes(taskStackSizeBytes), taskCoreNumber(taskCoreNumber),
-            nofWaitables(0), queuesMask(0), mutexIdStack(0)  // The value 0 is reserved for "empty stack".
+            nofWaitables(0), queuesMask(0), flagsMask(0), timersMask(0), mutexIdStack(0)  // The value 0 is reserved for "empty stack".
 		{
 			hEventGroup = xEventGroupCreate();
 			assert(hEventGroup != NULL); // If failed, not enough heap memory.
