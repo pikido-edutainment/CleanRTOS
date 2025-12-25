@@ -43,8 +43,7 @@ namespace crt
             }
             else
             {
-                // Just in case this queue.read is called directly, without preceding
-                // waitAny or waitAll (which would have cleared the corresponding bit).
+                pTask->clearEventBits(Waitable::getBitMask());
             }
 			assert(rc == pdPASS);
 		}
